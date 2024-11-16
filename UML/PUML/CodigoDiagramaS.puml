@@ -1,0 +1,17 @@
+@startuml
+actor Cliente
+participant "Catálogo de Produtos" as Catalogo
+participant Carrinho
+participant "Serviço de Pagamento" as Pagamento
+participant "Banco de Dados" as DB
+
+Cliente -> Catalogo: Busca produtos
+Catalogo --> Cliente: Lista de produtos
+Cliente -> Carrinho: Adiciona produto ao carrinho
+Carrinho -> DB: Verifica estoque
+DB --> Carrinho: Estoque confirmado
+Cliente -> Pagamento: Realiza checkout
+Pagamento -> DB: Processa transação financeira
+DB --> Pagamento: Confirmação de pagamento
+Pagamento --> Cliente: Compra concluída
+@enduml

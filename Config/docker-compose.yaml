@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  produtos:
+    image: produtos:latest
+    ports:
+      - "8080:8080"
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"

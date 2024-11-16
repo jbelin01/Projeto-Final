@@ -1,0 +1,45 @@
+@startuml
+class Produto {
+    +id: int
+    +nome: string
+    +descricao: string
+    +preco: double
+    +estoque: int
+    +atualizarEstoque(quantidade: int)
+    +calcularPrecoFinal(desconto: double): double
+}
+
+class Usuario {
+    +id: int
+    +nome: string
+    +email: string
+    +senha: string
+    +autenticar(email: string, senha: string): bool
+}
+
+class Carrinho {
+    +id: int
+    +itens: List<Item>
+    +adicionarItem(produto: Produto, quantidade: int)
+    +removerItem(produto: Produto)
+    +calcularTotal(): double
+}
+
+class Pagamento {
+    +id: int
+    +metodoPagamento: string
+    +valor: double
+    +processarPagamento(): string
+}
+
+class Item {
+    +produto: Produto
+    +quantidade: int
+    +calcularSubtotal(): double
+}
+
+Carrinho "1" -- "many" Item
+Item "1" -- "1" Produto
+Usuario "1" -- "many" Carrinho
+Carrinho "1" -- "1" Pagamento
+@enduml
